@@ -15,9 +15,8 @@ const Main = (props) => {
 
                 />
 
-               
                 <Route 
-                path='/journal/:id' 
+                path='/journal-entry/:id' 
                 element={<Show />}
 
                 />
