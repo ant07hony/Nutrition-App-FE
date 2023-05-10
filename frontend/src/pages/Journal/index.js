@@ -29,26 +29,30 @@ const Journal = (props) => {
     // console.log(journalEntry)
     useEffect(() => {
         handleRequest()
-    }, [])
+    },[isLoading])
 
     const handleChange = (e) => {
-        setNewForm({ ...newForm, [e.target.title]: e.target.value })
+        setNewForm({ ...newForm, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const newEntry = await createJournalEntry()
-        setNewForm({
-            title: "",
-            description: "",
-            entry: ""
-        })
-        handleRequest()
+        try{
+            await createJournalEntry(newForm)
+            setIsLoading(true)
+            setNewForm({
+                title: "",
+                description: "",
+                entry: ""
+            })
+        }catch(err){
+            console.log(err)
+        }
     }
 
-    useEffect(() => {
-        handleSubmit()
-    }, [])
+    // useEffect(() => {
+    //     handleSubmit()
+    // }, [])
 
     const loaded = () => {
         return journalEntries?.map((journalEntry, idx) => {

@@ -1,7 +1,7 @@
 
 
-const BASE_URL =`${process.env.REACT_APP_BASE_URL}`
-console.log(BASE_URL)
+const BASE_URL =process.env.REACT_APP_BASE_URL
+// console.log(BASE_URL)
 
 export async function index() {
 
@@ -12,6 +12,7 @@ export async function index() {
         }
 
         const response = await fetch(BASE_URL, options)
+        // console.log(response)
         if(response.ok){
             return response.json()
         }else{
@@ -35,6 +36,7 @@ export async function create(data) {
             body: JSON.stringify(data)
         }
         const response = await fetch(BASE_URL, options)
+        // console.log(response)
         if(response.ok){
             return response.json()
         }else{
@@ -43,6 +45,31 @@ export async function create(data) {
     }catch(err){
         console.log(err)
         return err
+    }
+}
+
+
+console.log(BASE_URL)
+// console.log(`${BASE_URL}/${id}`)
+
+
+
+export async function detail(id){
+    console.log(id)
+    try{
+        const options = {
+            method: 'GET',
+        }
+        const url = `${BASE_URL}/${id}`
+        console.log(url)
+        const response = await fetch(url, options)
+        
+        if(response.ok){
+            return response.json()
+        }
+    }catch(err){
+        console.log(err)
+        throw new Error('Invalid Request')
     }
 }
 
