@@ -49,19 +49,18 @@ export async function create(data) {
 }
 
 
-console.log(BASE_URL)
-// console.log(`${BASE_URL}/${id}`)
+
 
 
 
 export async function detail(id){
-    console.log(id)
+    // console.log(id)
     try{
         const options = {
             method: 'GET',
         }
         const url = `${BASE_URL}/${id}`
-        console.log(url)
+        // console.log(url)
         const response = await fetch(url, options)
         
         if(response.ok){
@@ -70,6 +69,23 @@ export async function detail(id){
     }catch(err){
         console.log(err)
         throw new Error('Invalid Request')
+    }
+}
+
+export async function destroy(id){
+    try{
+        const options = {
+            method: 'DELETE',
+        }
+        const url = `${BASE_URL}/${id}`
+        const response = await fetch(url, options)
+        if(response.ok){
+            return response.json()
+        }
+
+    }catch(err){
+        console.log(err)
+        throw new Error(err)
     }
 }
 

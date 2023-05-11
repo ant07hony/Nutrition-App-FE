@@ -1,0 +1,36 @@
+/* .entry {
+    display: grid;
+    grid-template-areas:
+        "title"
+        "description"
+        "entry"
+        
+}
+
+.entry>h2 {
+    grid-area: title;
+}
+
+
+.entry h3:first-of-type {
+    grid-area: description;
+}
+
+.entry h3:last-of-type {
+    grid-area: labentryel;
+} */
+
+.delete {
+    border: 1px solid #ddd;
+    background-color: transparent;
+    padding: 8px 24px;
+    border-radius: 4px;
+    transition: transform .5s ease-in-out;
+}
+
+.delete:hover {
+    border: 1px solid #ddd;
+    background-color: black;
+    color: white;
+    transform: scale(1.1, 1.1);
+}

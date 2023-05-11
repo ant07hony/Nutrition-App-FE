@@ -16,7 +16,7 @@ export async function createJournalEntry(data){
 
         const newEntry = await journalAPI.create(data)
         return newEntry
-        console.log(newEntry)
+        
 
     }catch(err){
         console.log(err)
@@ -28,7 +28,17 @@ export async function getEntry(id){
     try{
         const foundEntry = await journalAPI.detail(id)
         return foundEntry
-        console.log(foundEntry)
+    }catch(err){
+        console.log(err)
+        throw new Error(err)
+    }
+}
+
+export async function deleteEntry(id){
+    try{
+        const deletedEntry = await journalAPI.destroy(id)
+        return deletedEntry
+
     }catch(err){
         console.log(err)
         throw new Error(err)

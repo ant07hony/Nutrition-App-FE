@@ -1,33 +1,75 @@
 import show from './show.css'
-import { getEntry } from '../../utilities/journal-service'
+import { getEntry, deleteEntry } from '../../utilities/journal-service'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 const Show = (props) => {
 
     const [entry, setEntry] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
-    console.log(id)
-    
+    const navigate = useNavigate()
+    // console.log(id)
+
     const handleRequest = async () => {
         try {
             const entryData = await getEntry(id)
             setEntry(entryData)
-            console.log(entryData)
+            // console.log(entryData)
+            setIsLoading(false)
         } catch (err) {
             console.log(err)
         }
     }
 
-    console.log(`Current Person: ${JSON.stringify(entry)}`)
+    // console.log(`Current Person: ${JSON.stringify(entry)}`)
 
     useEffect(() => {
         handleRequest()
     }, [])
 
+    const handleDelete = async () => {
+        try {
+            const deletedResponse = await deleteEntry(id)
+            navigate('/')
+
+        } catch (err) {
+            console.log(err)
+            navigate(`/people/${id}`)
+        }
+    }
+
+    const loaded = () => (
+        <div className="entry">
+            <h1>Show Page</h1>
+            <h2>{entry.title}</h2>
+            <h3>{entry.description}</h3>
+            <h3>{entry.entry}</h3>
+            <div>
+                <button
+                    className="delete"
+                    onClick={handleDelete}
+                >Remove Entry</button>
+            </div>
+        </div>
+    )
+
+    const loading = () => (
+        <div className="journal-list">
+            <h1>
+                Loading...
+                <span>
+                    <img className="spinner" src="https://freesvg.org/img/1544764567.png" />
+                </span>
+            </h1>
+        </div>
+    )
+
     return (
-        <h1>Show Page</h1>
+        <div>
+            {isLoading ? loading() : loaded()}
+        </div>
     )
 }
 
