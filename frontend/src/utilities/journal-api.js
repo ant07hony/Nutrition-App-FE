@@ -1,7 +1,7 @@
 
 
 const BASE_URL =process.env.REACT_APP_BASE_URL
-// console.log(BASE_URL)
+
 
 export async function index() {
 
@@ -16,7 +16,7 @@ export async function index() {
         if(response.ok){
             return response.json()
         }else{
-            throw new Error('Invalid Request')
+            throw new Error('Invalid GET Request')
         }
     }catch(err){
         console.log(err)
@@ -40,18 +40,13 @@ export async function create(data) {
         if(response.ok){
             return response.json()
         }else{
-            throw new Error('Invalid Request')
+            throw new Error('Invalid POST Request')
         }
     }catch(err){
         console.log(err)
         return err
     }
 }
-
-
-
-
-
 
 export async function detail(id){
     // console.log(id)
@@ -68,7 +63,7 @@ export async function detail(id){
         }
     }catch(err){
         console.log(err)
-        throw new Error('Invalid Request')
+        throw new Error('Invalid GET Request')
     }
 }
 
@@ -85,7 +80,27 @@ export async function destroy(id){
 
     }catch(err){
         console.log(err)
-        throw new Error(err)
+        throw new Error('Invalid Request')
+    }
+}
+
+export async function update(id, formData){
+    try{
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }
+        const url = `${BASE_URL}/${id}`
+        const response = await fetch(url, options)
+        if(response.ok){
+            return response.json()
+        }
+    }catch(err){
+        console.log(err)
+        throw new Error('Invalid PUT Request')
     }
 }
 

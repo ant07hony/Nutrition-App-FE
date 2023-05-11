@@ -29,7 +29,7 @@ const Journal = (props) => {
     // console.log(journalEntry)
     useEffect(() => {
         handleRequest()
-    },[isLoading])
+    }, [isLoading])
 
     const handleChange = (e) => {
         setNewForm({ ...newForm, [e.target.name]: e.target.value })
@@ -37,7 +37,7 @@ const Journal = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try{
+        try {
             await createJournalEntry(newForm)
             setIsLoading(true)
             setNewForm({
@@ -45,14 +45,10 @@ const Journal = (props) => {
                 description: "",
                 entry: ""
             })
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
-
-    // useEffect(() => {
-    //     handleSubmit()
-    // }, [])
 
     const loaded = () => {
         return journalEntries?.map((journalEntry, idx) => {
@@ -63,6 +59,10 @@ const Journal = (props) => {
                         <h3>{journalEntry.date} / {journalEntry.time}</h3>
                         <h3>{journalEntry.description}</h3>
                         <h3>{journalEntry.entry}</h3>
+                    </Link>
+                    <Link to={`/journal/${journalEntry._id}/edit`}>
+                    <input type='submit' value='Edit Entry'/>
+
                     </Link>
                 </div>
             )
@@ -82,7 +82,6 @@ const Journal = (props) => {
     )
 
     // console.log(`There are ${journalEntries.length} entries `)
-    // console.log(journalEntries)
 
     return (
 

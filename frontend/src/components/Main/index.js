@@ -2,6 +2,7 @@ import main from './main.css'
 import { Routes, Route } from 'react-router-dom'
 import Journal from '../../pages/Journal'
 import Show from '../../pages/Show'
+import Edit from '../../pages/Edit'
 
 
 const Main = (props) => {
@@ -12,13 +13,16 @@ const Main = (props) => {
                 <Route 
                 path='/' 
                 element={ <Journal />} 
-
                 />
 
                 <Route 
                 path='/journal/:id' 
                 element={<Show />}
+                />
 
+                <Route
+                path='/journal/:id/edit'
+                element={<Edit />}
                 />
                 
             </Routes>

@@ -36,7 +36,7 @@ const Show = (props) => {
 
         } catch (err) {
             console.log(err)
-            navigate(`/people/${id}`)
+            navigate(`/journal/${id}`)
         }
     }
 
@@ -51,6 +51,12 @@ const Show = (props) => {
                     className="delete"
                     onClick={handleDelete}
                 >Remove Entry</button>
+
+                <Link to={`/journal/${entry._id}/edit`}>
+                    <button className="edit" type='submit' value='Edit Entry'
+                    >Edit Entry</button>
+                </Link>
+
             </div>
         </div>
     )

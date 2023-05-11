@@ -45,3 +45,14 @@ export async function deleteEntry(id){
     }
 }
 
+export async function updateEntry(id, data){
+    try{
+        const updatedEntry = await journalAPI.update(id, data)
+        return updatedEntry
+
+    }catch(err){
+        console.log(err)
+        throw new Error(err)
+    }
+}
+

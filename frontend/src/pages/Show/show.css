@@ -20,7 +20,7 @@
     grid-area: labentryel;
 } */
 
-.delete {
+.delete, .edit {
     border: 1px solid #ddd;
     background-color: transparent;
     padding: 8px 24px;
