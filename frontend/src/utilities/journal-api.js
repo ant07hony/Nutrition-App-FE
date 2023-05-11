@@ -1,4 +1,4 @@
-
+import {getUserToken} from './authToken'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -12,7 +12,7 @@ export async function index() {
         }
 
         const response = await fetch(BASE_URL, options)
-        // console.log(response)
+        console.log(response)
         if (response.ok) {
             return response.json()
         } else {
@@ -31,12 +31,13 @@ export async function create(data) {
         const options = {
             method: 'POST',
             headers: {
+                "Authorization": `bearer ${getUserToken()}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         }
         const response = await fetch(BASE_URL, options)
-        // console.log(response)
+        console.log(response)
         if (response.ok) {
             return response.json()
         } else {
@@ -71,6 +72,12 @@ export async function destroy(id) {
     try {
         const options = {
             method: 'DELETE',
+            headers: {
+                "Authorization": `bearer ${getUserToken()}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(id)
+            
         }
         const url = `${BASE_URL}/${id}`
         const response = await fetch(url, options)
@@ -89,6 +96,7 @@ export async function update(id, formData) {
         const options = {
             method: 'PUT',
             headers: {
+                "Authorization": `bearer ${getUserToken()}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)

@@ -2,8 +2,11 @@ import journal from './journal.css'
 import { useState, useEffect } from 'react'
 import { getEntries, createJournalEntry } from '../../utilities/journal-service'
 import { Link } from 'react-router-dom'
+import {getUserToken} from '../../utilities/authToken'
 
 const Journal = (props) => {
+
+    const token = getUserToken()
 
     const [journalEntries, setJournalEntries] = useState([])
 
@@ -83,14 +86,17 @@ const Journal = (props) => {
     // console.log(`There are ${journalEntries.length} entries `)
 
     return (
-
-        <section className="journal-list">
+        <div className="journal-list">
+        <section>
+        {token ? (
+            <>
             <h2>Create a new journal entry</h2>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={newForm.title}
                     name="title"
+                    required
                     placeholder="Title of new Journal Entry"
                     onChange={handleChange}
                 />
@@ -99,6 +105,7 @@ const Journal = (props) => {
                     type="text"
                     value={newForm.description}
                     name="description"
+                    required
                     placeholder="Provide a description of the new Journal Entry"
                     onChange={handleChange}
                 />
@@ -107,6 +114,7 @@ const Journal = (props) => {
                     type="text"
                     value={newForm.entry}
                     name="entry"
+                    required
                     placeholder="Write a new Journal Entry"
                     onChange={handleChange}
                 />
@@ -115,10 +123,11 @@ const Journal = (props) => {
                 />
 
             </form>
-
-            {isLoading ? loading() : loaded()}
-
+            </>
+        ) : null}
         </section>
+            {isLoading ? loading() : loaded()}
+        </div>
     )
 }
 
