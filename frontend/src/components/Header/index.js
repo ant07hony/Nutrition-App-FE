@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Nav = () => (
     <nav className="nav">
         <Link to='/'>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
         </Link>
         <div>Nutrition Journal</div>
     </nav>
@@ -13,7 +13,7 @@ const Nav = () => (
 const Header = (props) => {
     return (
         <header className="header">
-        <Nav/>
+            <Nav />
             <h1>Header Page</h1>
         </header>
     )

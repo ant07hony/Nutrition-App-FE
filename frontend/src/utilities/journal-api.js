@@ -1,6 +1,6 @@
 
 
-const BASE_URL =process.env.REACT_APP_BASE_URL
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 
 export async function index() {
@@ -13,12 +13,12 @@ export async function index() {
 
         const response = await fetch(BASE_URL, options)
         // console.log(response)
-        if(response.ok){
+        if (response.ok) {
             return response.json()
-        }else{
+        } else {
             throw new Error('Invalid GET Request')
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return err
     }
@@ -37,55 +37,55 @@ export async function create(data) {
         }
         const response = await fetch(BASE_URL, options)
         // console.log(response)
-        if(response.ok){
+        if (response.ok) {
             return response.json()
-        }else{
+        } else {
             throw new Error('Invalid POST Request')
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return err
     }
 }
 
-export async function detail(id){
+export async function detail(id) {
     // console.log(id)
-    try{
+    try {
         const options = {
             method: 'GET',
         }
         const url = `${BASE_URL}/${id}`
         // console.log(url)
         const response = await fetch(url, options)
-        
-        if(response.ok){
+
+        if (response.ok) {
             return response.json()
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
         throw new Error('Invalid GET Request')
     }
 }
 
-export async function destroy(id){
-    try{
+export async function destroy(id) {
+    try {
         const options = {
             method: 'DELETE',
         }
         const url = `${BASE_URL}/${id}`
         const response = await fetch(url, options)
-        if(response.ok){
+        if (response.ok) {
             return response.json()
         }
 
-    }catch(err){
+    } catch (err) {
         console.log(err)
         throw new Error('Invalid Request')
     }
 }
 
-export async function update(id, formData){
-    try{
+export async function update(id, formData) {
+    try {
         const options = {
             method: 'PUT',
             headers: {
@@ -95,10 +95,10 @@ export async function update(id, formData){
         }
         const url = `${BASE_URL}/${id}`
         const response = await fetch(url, options)
-        if(response.ok){
+        if (response.ok) {
             return response.json()
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
         throw new Error('Invalid PUT Request')
     }

@@ -1,56 +1,56 @@
 import * as journalAPI from './journal-api'
 
 
-export async function getEntries(){
-    try{
+export async function getEntries() {
+    try {
         const data = await journalAPI.index()
         return data
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return err
     }
 }
 
-export async function createJournalEntry(data){
-    try{
+export async function createJournalEntry(data) {
+    try {
 
         const newEntry = await journalAPI.create(data)
         return newEntry
-        
 
-    }catch(err){
+
+    } catch (err) {
         console.log(err)
         throw new Error(err)
     }
 }
 
-export async function getEntry(id){
-    try{
+export async function getEntry(id) {
+    try {
         const foundEntry = await journalAPI.detail(id)
         return foundEntry
-    }catch(err){
+    } catch (err) {
         console.log(err)
         throw new Error(err)
     }
 }
 
-export async function deleteEntry(id){
-    try{
+export async function deleteEntry(id) {
+    try {
         const deletedEntry = await journalAPI.destroy(id)
         return deletedEntry
 
-    }catch(err){
+    } catch (err) {
         console.log(err)
         throw new Error(err)
     }
 }
 
-export async function updateEntry(id, data){
-    try{
+export async function updateEntry(id, data) {
+    try {
         const updatedEntry = await journalAPI.update(id, data)
         return updatedEntry
 
-    }catch(err){
+    } catch (err) {
         console.log(err)
         throw new Error(err)
     }

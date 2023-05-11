@@ -61,8 +61,7 @@ const Journal = (props) => {
                         <h3>{journalEntry.entry}</h3>
                     </Link>
                     <Link to={`/journal/${journalEntry._id}/edit`}>
-                    <input type='submit' value='Edit Entry'/>
-
+                        <input type='submit' value='Edit Entry' />
                     </Link>
                 </div>
             )

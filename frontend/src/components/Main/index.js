@@ -10,21 +10,21 @@ const Main = (props) => {
         <main>
             <Routes>
 
-                <Route 
-                path='/' 
-                element={ <Journal />} 
-                />
-
-                <Route 
-                path='/journal/:id' 
-                element={<Show />}
+                <Route
+                    path='/'
+                    element={<Journal />}
                 />
 
                 <Route
-                path='/journal/:id/edit'
-                element={<Edit />}
+                    path='/journal/:id'
+                    element={<Show />}
                 />
-                
+
+                <Route
+                    path='/journal/:id/edit'
+                    element={<Edit />}
+                />
+
             </Routes>
         </main>
     )

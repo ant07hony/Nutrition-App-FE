@@ -31,6 +31,7 @@ const Show = (props) => {
 
     const handleDelete = async () => {
         try {
+
             const deletedResponse = await deleteEntry(id)
             navigate('/')
 
