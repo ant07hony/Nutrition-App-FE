@@ -1,7 +1,8 @@
 import {getUserToken} from './authToken'
 
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const BASE_URL = `${process.env.REACT_APP_BASE_URL}`
 
+console.log(BASE_URL)
 
 export async function index() {
 
@@ -11,8 +12,8 @@ export async function index() {
             method: 'GET'
         }
 
-        const response = await fetch(BASE_URL, options)
-        console.log(response)
+        const response = await fetch(`${BASE_URL}`, options)
+       
         if (response.ok) {
             return response.json()
         } else {
@@ -30,6 +31,7 @@ export async function create(data) {
 
         const options = {
             method: 'POST',
+            // mode: 'no-cors',
             headers: {
                 "Authorization": `bearer ${getUserToken()}`,
                 "Content-Type": "application/json"
@@ -58,7 +60,7 @@ export async function detail(id) {
         const url = `${BASE_URL}/${id}`
         // console.log(url)
         const response = await fetch(url, options)
-
+        console.log(response)
         if (response.ok) {
             return response.json()
         }

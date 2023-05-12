@@ -5,6 +5,7 @@ const getUserToken = () => {
 }
 
 const setUserToken = (token) => {
+    console.log(token)
     return localStorage.setItem('token', token)
 }
 

@@ -9,18 +9,19 @@ const RegisterForm = () => {
     const initialState = { username: "", password: "" }
     const [input, setInput] = useState(initialState)
     const navigate = useNavigate()
-    // const {setUser} = useContext(UserContext)
-    const context = useContext(UserContext)
-    console.log(context)
+    const {setUser} = useContext(UserContext)
+    // const context = useContext(UserContext)
+    // console.log(context)
     const token = getUserToken()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const createdUser = await signUp(input)
+        console.log(createdUser)
 
         if (createdUser.token) {
             setUserToken(createdUser.token)
-            // setUser(createdUser.user)
+            setUser(createdUser.user)
             navigate('/journal')
         } else {
             clearUserToken()

@@ -1,28 +1,31 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import { signIn } from '../../utilities/auth-services'
-import { clearUserToken, setUserToken } from "../../utilities/authToken";
+import { clearUserToken, setUserToken, getUserToken } from "../../utilities/authToken";
 import { UserContext } from '../../data'
+
 
 const LoginForm = () => {
 
     const initialState = { username: "", password: "" }
     const [input, setInput] = useState(initialState)
-    // const {setUser} = useContext(UserContext)
+    const {setUser} = useContext(UserContext)
 
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const loggingUser = await signIn(input)
+        console.log(loggingUser)
         if (loggingUser.token) {
-            // setUser(loggingUser.user)
+            setUser(loggingUser.user)
             setUserToken(loggingUser.token)
             navigate('/journal')
         } else {
             clearUserToken()
             navigate('/')
         }
+        console.log(getUserToken())
         setInput(initialState)
     }
 

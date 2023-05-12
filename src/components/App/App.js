@@ -7,7 +7,7 @@ import Main from '../Main'
 function App() {
 
   const { Provider: UserInfo } = UserContext
-  console.log(UserContext)
+  // console.log(UserContext)
 
   const [currentUser, setCurrentUser] = useState(null)
 
@@ -15,9 +15,10 @@ function App() {
     <div className="App">
       <UserInfo
         value={{ user: currentUser, setUser: setCurrentUser }}
-      />
+      >
       <Header />
       <Main />
+      </UserInfo>
       
     </div>
   );

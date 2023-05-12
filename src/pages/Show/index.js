@@ -22,6 +22,7 @@ const Show = (props) => {
         try {
             const entryData = await getEntry(id)
             setEntry(entryData)
+            
             // console.log(entryData)
             setIsLoading(false)
         } catch (err) {
@@ -29,7 +30,7 @@ const Show = (props) => {
         }
     }
 
-    // console.log(`Current Person: ${JSON.stringify(entry)}`)
+    console.log(`Current Person: ${JSON.stringify(entry)}`)
 
     useEffect(() => {
         handleRequest()
@@ -46,7 +47,7 @@ const Show = (props) => {
             navigate(`/journal/${id}`)
         }
     }
-
+   
     const loaded = () => (
         <div className="entry">
             <h1>Show Page</h1>

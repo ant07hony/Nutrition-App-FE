@@ -1,4 +1,6 @@
-const BASE_URL= `${process.env.REACT_APP_AUTH_URL}`
+
+
+const BASE_URL = `${process.env.REACT_APP_AUTH_URL}`
 console.log(BASE_URL)
 
 
@@ -7,15 +9,17 @@ export async function registerUser(data){
         const url = `${BASE_URL}/register`
         const options = {
             method: 'POST',
+            // mode: 'cors-with-forced-preflight',
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data)
         }
+        console.log(data)
         const response = await fetch(url, options)
-        console.log(response)
+        console.log(response.body)
         if (response.ok){
-            return response.json()
+            return response.json(data)
         }else{
             throw new Error(response.statusText)
         }
