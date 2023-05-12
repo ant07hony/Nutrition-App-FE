@@ -7,6 +7,7 @@ import Main from '../Main'
 function App() {
 
   const { Provider: UserInfo } = UserContext
+  console.log(UserContext)
 
   const [currentUser, setCurrentUser] = useState(null)
 
@@ -17,6 +18,7 @@ function App() {
       />
       <Header />
       <Main />
+      
     </div>
   );
 }

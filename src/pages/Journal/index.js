@@ -1,13 +1,13 @@
 import journal from './journal.css'
 import { useState, useEffect } from 'react'
 import { getEntries, createJournalEntry } from '../../utilities/journal-service'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {getUserToken} from '../../utilities/authToken'
 
 const Journal = (props) => {
 
     const token = getUserToken()
-
+    const navigate = useNavigate()
     const [journalEntries, setJournalEntries] = useState([])
 
     const [isLoading, setIsLoading] = useState(true)
@@ -17,6 +17,10 @@ const Journal = (props) => {
         description: "",
         entry: "",
     })
+
+    if(!token){
+        navigate('/auth')
+    }
 
     async function handleRequest() {
         try {

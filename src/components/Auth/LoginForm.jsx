@@ -8,7 +8,7 @@ const LoginForm = () => {
 
     const initialState = { username: "", password: "" }
     const [input, setInput] = useState(initialState)
-    const { setUser } = useContext(UserContext)
+    // const {setUser} = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -16,8 +16,8 @@ const LoginForm = () => {
         e.preventDefault()
         const loggingUser = await signIn(input)
         if (loggingUser.token) {
+            // setUser(loggingUser.user)
             setUserToken(loggingUser.token)
-            setUser(loggingUser.user)
             navigate('/journal')
         } else {
             clearUserToken()

@@ -3,14 +3,20 @@ import { getEntry, deleteEntry } from '../../utilities/journal-service'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { getUserToken } from '../../utilities/authToken'
 
 const Show = (props) => {
 
+    const token = getUserToken()
     const [entry, setEntry] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const navigate = useNavigate()
     // console.log(id)
+
+    if(!token){
+        navigate('/auth')
+    }
 
     const handleRequest = async () => {
         try {

@@ -1,4 +1,6 @@
 const BASE_URL= `${process.env.REACT_APP_AUTH_URL}`
+console.log(BASE_URL)
+
 
 export async function registerUser(data){
     try{
@@ -11,6 +13,7 @@ export async function registerUser(data){
             body: JSON.stringify(data)
         }
         const response = await fetch(url, options)
+        console.log(response)
         if (response.ok){
             return response.json()
         }else{

@@ -2,9 +2,11 @@ import edit from './edit.css'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getEntry, updateEntry } from '../../utilities/journal-service'
+import { getUserToken } from '../../utilities/authToken'
 
 const Edit = () => {
 
+    const token = getUserToken()
     const [entry, setEntry] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
@@ -14,6 +16,10 @@ const Edit = () => {
         description: "",
         entry: ""
     })
+
+    if(!token){
+        navigate('/auth')
+    }
 
     const handleRequest = async () => {
         try {
