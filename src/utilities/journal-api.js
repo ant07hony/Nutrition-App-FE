@@ -56,9 +56,15 @@ export async function detail(id) {
     try {
         const options = {
             method: 'GET',
+            headers: {
+                "Authorization": `bearer ${getUserToken()}`,
+                "Content-Type": "application/json"
+            },
+            // body: JSON.stringify(id)
+           
         }
         const url = `${BASE_URL}/${id}`
-        // console.log(url)
+        console.log(url)
         const response = await fetch(url, options)
         console.log(response)
         if (response.ok) {
@@ -78,7 +84,7 @@ export async function destroy(id) {
                 "Authorization": `bearer ${getUserToken()}`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(id)
+            // body: JSON.stringify(id)
             
         }
         const url = `${BASE_URL}/${id}`

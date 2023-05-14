@@ -26,7 +26,10 @@ export async function createJournalEntry(data) {
 
 export async function getEntry(id) {
     try {
+        // console.log(id)
         const foundEntry = await journalAPI.detail(id)
+        // console.log(id)
+        // console.log('found Entry', foundEntry)
         return foundEntry
     } catch (err) {
         console.log(err)

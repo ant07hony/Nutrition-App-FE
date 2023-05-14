@@ -22,6 +22,8 @@ const Show = (props) => {
         try {
             const entryData = await getEntry(id)
             setEntry(entryData)
+            console.log('entry data:', entryData)
+            // console.log('entry:', entry)
             
             // console.log(entryData)
             setIsLoading(false)
@@ -30,7 +32,7 @@ const Show = (props) => {
         }
     }
 
-    console.log(`Current Person: ${JSON.stringify(entry)}`)
+    // console.log(`Current Person: ${JSON.stringify(entry)}`)
 
     useEffect(() => {
         handleRequest()
@@ -40,7 +42,7 @@ const Show = (props) => {
         try {
 
             const deletedResponse = await deleteEntry(id)
-            navigate('/')
+            navigate('/journal')
 
         } catch (err) {
             console.log(err)
@@ -48,6 +50,7 @@ const Show = (props) => {
         }
     }
    
+    console.log('entry:', entry)
     const loaded = () => (
         <div className="entry">
             <h1>Show Page</h1>
