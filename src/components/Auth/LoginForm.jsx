@@ -29,6 +29,7 @@ const LoginForm = () => {
         setInput(initialState)
     }
 
+
     const handleChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
@@ -50,6 +51,7 @@ const LoginForm = () => {
                 <input
                     id="password"
                     name="password"
+                    type="password"
                     value={input.password}
                     onChange={handleChange}
                 />

@@ -1,4 +1,4 @@
-
+import { useNavigate} from 'react-router-dom'
 
 const BASE_URL = `${process.env.REACT_APP_AUTH_URL}`
 console.log(BASE_URL)
@@ -9,7 +9,6 @@ export async function registerUser(data){
         const url = `${BASE_URL}/register`
         const options = {
             method: 'POST',
-            // mode: 'cors-with-forced-preflight',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -30,7 +29,7 @@ export async function registerUser(data){
 }
 
 export async function loginUser(data){
-
+   
     const url = `${BASE_URL}/login`
     const options = {
         method: 'POST',
@@ -49,3 +48,5 @@ export async function loginUser(data){
         throw new Error(dataResponse.error)
     }
 }
+ 
+

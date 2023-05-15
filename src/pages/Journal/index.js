@@ -2,7 +2,7 @@ import journal from './journal.css'
 import { useState, useEffect } from 'react'
 import { getEntries, createJournalEntry } from '../../utilities/journal-service'
 import { Link, useNavigate } from 'react-router-dom'
-import {getUserToken} from '../../utilities/authToken'
+import { getUserToken } from '../../utilities/authToken'
 
 const Journal = (props) => {
 
@@ -18,7 +18,7 @@ const Journal = (props) => {
         entry: "",
     })
 
-    if(!token){
+    if (!token) {
         navigate('/auth')
     }
 
@@ -63,12 +63,15 @@ const Journal = (props) => {
                 <div key={idx} className="entry-card">
                     <Link to={`/journal/${journalEntry._id}`}>
                         <h1>{journalEntry.title}</h1>
-                        <h3>{journalEntry.date} / {journalEntry.time}</h3>
+
+                        <label>Description:</label>
                         <h3>{journalEntry.description}</h3>
+
+                        <label>Entry:</label>
                         <h3>{journalEntry.entry}</h3>
                     </Link>
                     <Link to={`/journal/${journalEntry._id}/edit`}>
-                        <input type='submit' value='Edit Entry' />
+                        <button className="entry-edit-btn" type='submit' value='Edit Entry'>Edit</button>
                     </Link>
                 </div>
             )
@@ -91,45 +94,55 @@ const Journal = (props) => {
 
     return (
         <div className="journal-list">
-        <section>
-        {token ? (
-            <>
-            <h2>Create a new journal entry</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={newForm.title}
-                    name="title"
-                    required
-                    placeholder="Title of new Journal Entry"
-                    onChange={handleChange}
-                />
+            <section className="create-form">
+                {token ? (
+                    <>
+                        <h2>New Entry</h2>
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <label>Title: </label>
+                                <input
+                                    type="text"
+                                    value={newForm.title}
+                                    name="title"
+                                    required
+                                    placeholder="Title of new Journal Entry"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label>Description: </label>
+                                <input
+                                    type="text"
+                                    value={newForm.description}
+                                    name="description"
+                                    required
+                                    placeholder="Provide a description of the new Journal Entry"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label>Entry: </label>
+                                <textarea
+                                    type="text"
+                                    value={newForm.entry}
+                                    name="entry"
+                                    required
+                                    placeholder="Write a new Journal Entry"
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                            <button 
+                            className="new-entry-btn"
+                            type="submit" 
+                            >Create New Entry</button>
+                            </div>
 
-                <input
-                    type="text"
-                    value={newForm.description}
-                    name="description"
-                    required
-                    placeholder="Provide a description of the new Journal Entry"
-                    onChange={handleChange}
-                />
-
-                <textarea
-                    type="text"
-                    value={newForm.entry}
-                    name="entry"
-                    required
-                    placeholder="Write a new Journal Entry"
-                    onChange={handleChange}
-                />
-
-                <input type="submit" value="Create Journal Entry"
-                />
-
-            </form>
-            </>
-        ) : null}
-        </section>
+                        </form>
+                    </>
+                ) : null}
+            </section>
             {isLoading ? loading() : loaded()}
         </div>
     )

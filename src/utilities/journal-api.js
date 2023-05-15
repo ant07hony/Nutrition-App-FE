@@ -31,7 +31,6 @@ export async function create(data) {
 
         const options = {
             method: 'POST',
-            // mode: 'no-cors',
             headers: {
                 "Authorization": `bearer ${getUserToken()}`,
                 "Content-Type": "application/json"

@@ -1,22 +1,38 @@
 import header from './header.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import {getUserToken, clearUserToken} from '../../utilities/authToken'
 
 
-const Nav = () => (
-    <nav className="nav">
-        <Link to='/'>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
-        </Link>
-        <div>Nutrition Journal</div>
-    </nav>
-)
+
 const Header = (props) => {
     return (
         <header className="header">
+            <h1>Nutrition Journal APP</h1>
+            <h3 className="profile-pic">Welcome </h3>
             <Nav />
-            <h1>Header Page</h1>
         </header>
     )
 }
 
 export default Header
+
+const logout = () => {
+    clearUserToken()
+   
+}
+
+const Nav = () => (
+
+    <nav className="nav">
+    <div className="navbar">
+        <Link to='/journal'>
+         Home
+        </Link>
+
+
+    </div>
+        {/* <div>Nutrition Journal</div> */}
+    </nav>
+)
+

@@ -1,0 +1,22 @@
+.edit-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.update-btn {
+    border: 1px solid #040404;
+    background-color: transparent;
+    padding: 8px 24px;
+    border-radius: 4px;
+    transition: transform .5s ease-in-out;
+    margin: 0 10px;
+}
+
+.update-btn:hover {
+    border: 1px solid #ddd;
+    background-color: black;
+    color: white;
+    transform: scale(1.1, 1.1);
+}

@@ -58,10 +58,13 @@ const Edit = () => {
 
     const loaded = () => (
         <div className="entry">
-            <h1>Edit Page</h1>
-            <section>
-                <h2>Edit {entry.title}</h2>
+            <h1>Edit: {entry.title}</h1>
+            <section className="edit-page">
+                
+                
                 <form onSubmit={handleSubmit}>
+                <div>
+                <label>Title: 
                     <input
                         type="text"
                         value={editForm.title}
@@ -69,7 +72,10 @@ const Edit = () => {
                         placeholder="Edit Title"
                         onChange={handleChange}
                     />
-
+                </label>
+                </div>
+                <div>
+                <label>Description: 
                     <input
                         type="text"
                         value={editForm.description}
@@ -77,7 +83,10 @@ const Edit = () => {
                         placeholder="Edit Description"
                         onChange={handleChange}
                     />
-
+                    </label>
+                    </div>
+                    <div>
+                    <label>Entry: 
                     <textarea
                         type="text"
                         value={editForm.entry}
@@ -85,7 +94,12 @@ const Edit = () => {
                         placeholder="Edit Entry"
                         onChange={handleChange}
                     />
-                    <input type="submit" value="Update Entry" />
+                    </label>
+                    </div>
+                    <button
+                    className="update-btn"
+                    type="submit" 
+                    >Update Entry</button>
                 </form>
             </section>
 

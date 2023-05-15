@@ -53,10 +53,19 @@ const Show = (props) => {
     console.log('entry:', entry)
     const loaded = () => (
         <div className="entry">
-            <h1>Show Page</h1>
-            <h2>{entry.title}</h2>
-            <h3>{entry.description}</h3>
-            <h3>{entry.entry}</h3>
+            <h1>Entry: {entry.title}</h1>
+            <div className="entry-section">
+            <label>Date/Time; </label>
+            <p>{entry.date} / {entry.time}</p>
+            </div>
+            <div className="entry-section">
+            <label>Description: </label>
+            <p>{entry.description}</p>
+            </div>
+            <div className="entry-section">
+            <label>Entry: </label>
+            <p>{entry.entry}</p>
+            </div>
             <div>
                 <button
                     className="delete"

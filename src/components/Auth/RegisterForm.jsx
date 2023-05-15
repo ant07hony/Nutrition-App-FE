@@ -52,6 +52,7 @@ const RegisterForm = () => {
                 <input
                     id="password"
                     name="password"
+                    type="password"
                     value={input.password}
                     onChange={handleChange}
                 />

@@ -1,10 +1,22 @@
 .header {
     border: solid black 2px;
+    display: block;
+    height: 10em;
+    
 }
+.header>h1 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* .profile-pic{
+  height: 1vmin;
+  width: 1vmin;
+} */
+
 
 .nav{
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 8px 20px;
@@ -14,7 +26,3 @@
   margin-left: 20px;
 }
 
-.nav img {
-  width: 45px; 
-  height: auto;
-}
