@@ -37,6 +37,7 @@ Express.js
 React
 Css
 MongoDB
+Mongoose
 Netlify
 Heroku
 
