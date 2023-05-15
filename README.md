@@ -37,6 +37,8 @@ Express.js
 React
 Css
 MongoDB
+Netlify
+Heroku
 
 
 Icebox Items:
