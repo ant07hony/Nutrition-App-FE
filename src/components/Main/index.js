@@ -5,7 +5,7 @@ import Auth from '../../pages/Auth'
 import Journal from '../../pages/Journal'
 import Show from '../../pages/Show'
 import Edit from '../../pages/Edit'
-
+import Basket from '../../pages/Basket'
 
 const Main = (props) => {
     return (

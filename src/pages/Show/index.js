@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { getUserToken } from '../../utilities/authToken'
+import { createBasket, getBaskets } from '../../utilities/basket-service'
 
 const Show = (props) => {
 
@@ -12,9 +13,16 @@ const Show = (props) => {
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const navigate = useNavigate()
+    console.log(entry)
     // console.log(id)
+    const [basket, setBasket] = useState([])
+    const [newForm, setNewForm] = useState({
+        name: "",
+        dataType: "",
+        query: "",
+    })
 
-    if(!token){
+    if (!token) {
         navigate('/auth')
     }
 
@@ -22,9 +30,9 @@ const Show = (props) => {
         try {
             const entryData = await getEntry(id)
             setEntry(entryData)
-            console.log('entry data:', entryData)
+            // console.log('entry data:', entryData)
             // console.log('entry:', entry)
-            
+
             // console.log(entryData)
             setIsLoading(false)
         } catch (err) {
@@ -34,8 +42,21 @@ const Show = (props) => {
 
     // console.log(`Current Person: ${JSON.stringify(entry)}`)
 
+    async function handleBasketRequest() {
+        try {
+            const basketData = await getBaskets()
+            console.log(basketData)
+            setBasket(basketData)
+            setIsLoading(false)
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
         handleRequest()
+        // handleBasketRequest()
     }, [])
 
     const handleDelete = async () => {
@@ -49,7 +70,22 @@ const Show = (props) => {
             navigate(`/journal/${id}`)
         }
     }
-   
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            await createBasket(newForm)
+            setIsLoading(true)
+            setNewForm({
+                name: "",
+                dataType: "",
+                query: "",
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     console.log('entry:', entry)
     const loaded = () => (
         <div className="entry">
@@ -67,7 +103,6 @@ const Show = (props) => {
                     <button className="edit" type='submit' value='Edit Entry'
                     >Edit Entry</button>
                 </Link>
-
             </div>
         </div>
     )
@@ -85,7 +120,27 @@ const Show = (props) => {
 
     return (
         <div>
-            {isLoading ? loading() : loaded()}
+            <div>
+                {isLoading ? loading() : loaded()}
+            </div>
+            <div className="basket">
+                <h2>Create a Basket</h2>
+                <form onSubmit={handleSubmit}>
+                    <label for="dataType" >Data Type:</label>
+                    <select name="dataType">Data Type
+                        <option value="survey">Survey</option>
+                        <option value="branded">Branded</option>
+                    </select>
+                    <label>Query:</label>
+                    <input
+                        placeholder="ex. apple"
+                    >
+                    </input>
+
+                    <input type="submit" value="Create Basket"
+                    />
+                </form>
+            </div>
         </div>
     )
 }

@@ -58,6 +58,7 @@ const Journal = (props) => {
     }
 
     const loaded = () => {
+        console.log(journalEntries)
         return journalEntries?.map((journalEntry, idx) => {
             return (
                 <div key={idx} className="entry-card">

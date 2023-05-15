@@ -1,8 +1,9 @@
 import {getUserToken} from './authToken'
 
+const API_KEY = `${process.env.REACT_APP_USDA_API_KEY}`
+
 const BASE_URL = `${process.env.REACT_APP_BASE_URL}`
 
-console.log(BASE_URL)
 
 export async function index() {
 
@@ -16,7 +17,7 @@ export async function index() {
             },
         }
 
-        const response = await fetch(`${BASE_URL}`, options)
+        const response = await fetch(`${API_KEY }`, options)
        
         if (response.ok) {
             return response.json()
@@ -41,7 +42,7 @@ export async function create(data) {
             },
             body: JSON.stringify(data)
         }
-        const response = await fetch(BASE_URL, options)
+        const response = await fetch(API_KEY, options)
         console.log(response)
         if (response.ok) {
             return response.json()
@@ -67,9 +68,9 @@ export async function detail(id) {
            
         }
         const url = `${BASE_URL}/${id}`
-        // console.log(url)
+        console.log(url)
         const response = await fetch(url, options)
-        // console.log(response)
+        console.log(response)
         if (response.ok) {
             return response.json()
         }

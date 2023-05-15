@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Nav = () => (
     <nav className="nav">
-        <Link to='/'>
+        <Link to='/journal'>
             <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" />
         </Link>
         <div>Nutrition Journal</div>
