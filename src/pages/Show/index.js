@@ -10,12 +10,16 @@ const Show = (props) => {
     const token = getUserToken()
     const [entry, setEntry] = useState(null)
     const [basketEntry, setBasketEntry] = useState(null)
+    const [newForm, setNewForm] = useState({
+        DataType: "",
+        Query: "",
+    })
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const navigate = useNavigate()
     // console.log(id)
 
-    if(!token){
+    if (!token) {
         navigate('/auth')
     }
 
@@ -25,8 +29,13 @@ const Show = (props) => {
             setEntry(entryData)
             console.log('entry data:', entryData)
             // console.log('entry:', entry)
-            
+
+            // const basketData = await getBasket()
+            // setBasketEntry(basketData)
+            // console.log('basket data', basketData)
+
             setIsLoading(false)
+
         } catch (err) {
             console.log(err)
         }
@@ -49,33 +58,79 @@ const Show = (props) => {
             navigate(`/journal/${id}`)
         }
     }
-   
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try{
+
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const handleChange = (e) => {
+        setNewForm({ ...newForm, [e.target.name]: e.target.value })
+    }
+
     console.log('entry:', entry)
     const loaded = () => (
-        <div className="entry">
-            <h1>Entry: {entry.title}</h1>
-            <div className="entry-section">
-            <label>Date/Time; </label>
-            <p>{entry.date} / {entry.time}</p>
-            </div>
-            <div className="entry-section">
-            <label>Description: </label>
-            <p>{entry.description}</p>
-            </div>
-            <div className="entry-section">
-            <label>Entry: </label>
-            <p>{entry.entry}</p>
-            </div>
-            <div>
-                <button
-                    className="delete"
-                    onClick={handleDelete}
-                >Remove Entry</button>
+        <div className="entry-basket">
+            <div className="entry">
+                <h1>Entry: {entry.title}</h1>
+                <div className="entry-section">
+                    <label>Date/Time; </label>
+                    <p>{entry.date} / {entry.time}</p>
+                </div>
+                <div className="entry-section">
+                    <label>Description: </label>
+                    <p>{entry.description}</p>
+                </div>
+                <div className="entry-section">
+                    <label>Entry: </label>
+                    <p>{entry.entry}</p>
+                </div>
+                <div>
+                    <button
+                        className="delete"
+                        onClick={handleDelete}
+                    >Remove Entry</button>
 
-                <Link to={`/journal/${entry._id}/edit`}>
-                    <button className="edit" type='submit' value='Edit Entry'
-                    >Edit Entry</button>
-                </Link>
+                    <Link to={`/journal/${entry._id}/edit`}>
+                        <button className="edit" type='submit' value='Edit Entry'
+                        >Edit Entry</button>
+                    </Link>
+
+                </div>
+            </div>
+            <div className="basket-form">
+                <form onSubmit={handleSubmit}>
+                    <div className="basket">
+                    <div className="datatype">
+                        <h1>Basket</h1>
+                        <label for="dataType">DataType: </label>
+                        <select name="dataType"
+                        value={newForm.DataType}
+                        id="dataType">
+                            <option value="Survey">Survey</option>
+                            <option value="Branded">Branded</option>
+                        </select>
+                        </div>
+
+                        <div className="query">
+                       <label for="query">Item: </label>
+                        <input
+                            type="text"
+                            value={newForm.Query}
+                            name="query"
+                            required
+                            placeholder="Find Item"
+                            onChange={handleChange}
+                        />
+                        </div>
+
+                    </div>
+
+                </form>
 
             </div>
         </div>
