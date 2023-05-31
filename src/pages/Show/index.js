@@ -9,6 +9,7 @@ const Show = (props) => {
 
     const token = getUserToken()
     const [entry, setEntry] = useState(null)
+    const [basketEntry, setBasketEntry] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
     const navigate = useNavigate()
@@ -25,7 +26,6 @@ const Show = (props) => {
             console.log('entry data:', entryData)
             // console.log('entry:', entry)
             
-            // console.log(entryData)
             setIsLoading(false)
         } catch (err) {
             console.log(err)

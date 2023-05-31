@@ -7,6 +7,7 @@ console.log(BASE_URL)
 export async function registerUser(data){
     try{
         const url = `${BASE_URL}/register`
+        console.log(BASE_URL)
         const options = {
             method: 'POST',
             headers: {
@@ -31,6 +32,7 @@ export async function registerUser(data){
 export async function loginUser(data){
    
     const url = `${BASE_URL}/login`
+    console.log(BASE_URL)
     const options = {
         method: 'POST',
         headers: {
