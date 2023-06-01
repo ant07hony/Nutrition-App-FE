@@ -9,10 +9,9 @@ const Show = (props) => {
 
     const token = getUserToken()
     const [entry, setEntry] = useState(null)
-    const [basketEntry, setBasketEntry] = useState(null)
-    const [newForm, setNewForm] = useState({
-        DataType: "",
-        Query: "",
+    const [basketEntry, setBasketEntry] = useState({
+        dataType: "",
+        query: "",
     })
     const [isLoading, setIsLoading] = useState(true)
     const { id } = useParams()
@@ -61,16 +60,20 @@ const Show = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try{
+        try {
 
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
 
     const handleChange = (e) => {
-        setNewForm({ ...newForm, [e.target.name]: e.target.value })
+        setBasketEntry({ ...basketEntry, [e.target.name]: e.target.value})
+        // setBasketEntry({ ...basketEntry, [e.target.name]: e.target.value })
+        // console.log(e.target.name)
+        // console.log(e.target.value)
     }
+
 
     console.log('entry:', entry)
     const loaded = () => (
@@ -105,27 +108,34 @@ const Show = (props) => {
             <div className="basket-form">
                 <form onSubmit={handleSubmit}>
                     <div className="basket">
-                    <div className="datatype">
-                        <h1>Basket</h1>
-                        <label for="dataType">DataType: </label>
-                        <select name="dataType"
-                        value={newForm.DataType}
-                        id="dataType">
-                            <option value="Survey">Survey</option>
-                            <option value="Branded">Branded</option>
-                        </select>
+                        <div className="datatype">
+                            <h1>Basket</h1>
+                            <label htmlFor="dataType">DataType: </label>
+                            <select name="dataType"
+                                defaultValue={basketEntry.dataType}
+                                id="dataType">
+                                <option value="Survey">Survey</option>
+                                <option value="Branded">Branded</option>
+                            </select>
                         </div>
 
                         <div className="query">
-                       <label for="query">Item: </label>
-                        <input
-                            type="text"
-                            value={newForm.Query}
-                            name="query"
-                            required
-                            placeholder="Find Item"
-                            onChange={handleChange}
-                        />
+                            <label htmlFor="query">Item: </label>
+                            <input
+                                type="text"
+                                value={basketEntry.query}
+                                name="query"
+                                required
+                                placeholder="Find Item"
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="basket-btn">
+                            <button
+                                className="submit-btn"
+                                type="submit"
+                            >Submit</button>
                         </div>
 
                     </div>

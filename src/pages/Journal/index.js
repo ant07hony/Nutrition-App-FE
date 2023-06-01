@@ -40,6 +40,8 @@ const Journal = (props) => {
 
     const handleChange = (e) => {
         setNewForm({ ...newForm, [e.target.name]: e.target.value })
+        // console.log(e.target.name)
+        // console.log(e.target.values)
     }
 
     const handleSubmit = async (e) => {
