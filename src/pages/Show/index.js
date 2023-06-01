@@ -114,8 +114,12 @@ const Show = (props) => {
                             <select name="dataType"
                                 defaultValue={basketEntry.dataType}
                                 id="dataType">
-                                <option value="Survey">Survey</option>
-                                <option value="Branded">Branded</option>
+                                <option 
+                                name="Survey"
+                                value="Survey">Survey</option>
+                                <option 
+                                name="Branded"
+                                value="Branded">Branded</option>
                             </select>
                         </div>
 
